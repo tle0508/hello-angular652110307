@@ -1,56 +1,69 @@
 import { Component } from '@angular/core';
+import { CaptionItem } from './caption-item';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: `./app.component.html`,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  title: String | null;
+  title: String | undefined; 
   imgSrc = "./assets/Daco.png";
-  messages: String[] = [
-    'ไม่ใช่ห่วงยาง แต่เป็นห่วงใย',
-    'ที่เธอหายไป เพราะไม่มีใจหรือแค่กักตัว',
-    'อยากร้ายเหมือนโควิด จะได้มีคนติดหลายๆ คน',
-    'ช่วงนี้มีแต่คนใส่แมส ไม่เห็นมีคนใส่ใจเลย',
-    'ต่อให้โลกไม่มีโควิด ก็คงไม่มีสิทธิ์ใกล้ชิดคุณ',
-    'เศร้ากว่าการติดโควิด-19 คือการคิดผิดไปติดคนอย่างเธอ',
-    'โควิดทำลายปอด แต่ทักแล้วไม่ตอบทำลายหัวใจ',
 
+  // type inference
+  // messages = [
+  //   'อากาศร้อนก็ทนเอา ขนาดเขาไม่รัก ยังทนได้เลย',
+  //   'ไม่ชอบคนอ่อนไหว ชอบแต่คนโอนไวเท่านั้น',
+  //   'เพราะว่าไม่ใช่ยาสระผม เลยไม่มีสิทธิ์เข้าตาเธอ',
+  // ];
+  //usedMessages: string[] = [];
+
+  captionList: CaptionItem[] = [
+    {
+      id: 1,
+      message: 'อากาศร้อนก็ทนเอา ขนาดเขาไม่รัก ยังทนได้เลย',
+      icon: './assets/ic_funny_01.png'
+    },
+    {
+      id: 2,
+      message: 'ไม่ชอบคนอ่อนไหว ชอบแต่คนโอนไวเท่านั้น',
+      icon: './assets/ic_funny_02.png'
+    },
+    {
+      id: 3,
+      message: 'เพราะว่าไม่ใช่ยาสระผม เลยไม่มีสิทธิ์เข้าตาเธอ',
+      icon: './assets/ic_funny_03.png'
+    },
   ];
 
-  private useMessage: String[] = [];
+  usedCaptionList: CaptionItem[] = [];
 
   constructor() {
-    this.title = this.randomcaption();
-
+    this.title = this.randomCaption()?.message;
   }
 
-  randomcaption() {
+  randomCaption() {
+    let randomIndex: number;
+    let newCaption: CaptionItem;
 
-    let randomindex: number;
-    let newCaption: String;
-    if (this.messages.length == this.useMessage.length) {
+    if (this.captionList.length == this.usedCaptionList.length) {
       return null;
-
     }
 
     do {
-      randomindex = this.Random(this.messages.length);
-      newCaption = this.messages[randomindex];
-    } while (this.useMessage.includes(newCaption));
-    this.useMessage.push(newCaption);
+      randomIndex = this.getRandomInt(this.captionList.length);
+      newCaption = this.captionList[randomIndex];
+    } while (this.usedCaptionList.includes(newCaption));
+
+    this.usedCaptionList.push(newCaption);
     return newCaption;
   }
 
-  handleClickbutton() {
-    this.title = this.randomcaption();
-
+  handleClickButton() {
+    this.title = this.randomCaption()?.message;
   }
 
-  private Random(max: number) {
-    return Math.floor(Math.random() * max)
+  private getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
   }
-
 }

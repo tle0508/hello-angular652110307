@@ -1,8 +1,20 @@
-<div class="contain">
-  <img [src]="imgSrc" style="width: 200px; ">
-  <div class="title">{{title}}</div>
-  <button [disabled]="!title" (click)="handleClickbutton()" class="btn btn-warning">random</button>
-  <ul>
-    <li *ngFor = "let msg of messages">{{msg}}</li>
-  </ul>
+<div style="border: 2px solid red; height: 100vh; 
+            display: flex; justify-content: center; align-items: center; 
+            flex-direction: column; font-family: sriracha; font-size: 30px">
+
+  <div style="display: flex; flex-direction: row; 
+              justify-content: space-around;">
+    <ul style="font-size: 14px;">
+      <li *ngFor="let captionItem of captionList">{{captionItem.message}}</li>
+    </ul>
+    <ul style="font-size: 14px;">
+      <li *ngFor="let captionItem of usedCaptionList">{{captionItem.message}}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="title">Caption: {{title}}</div>
+  <img [src]="imgSrc" style="width: 100px;">
+  <button [disabled]="!title" class="btn btn-success" (click)="handleClickButton()">
+    Next Caption
+  </button>
 </div>
