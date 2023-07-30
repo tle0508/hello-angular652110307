@@ -1,0 +1,28 @@
+.title{
+   
+   font-size: 60px;
+   color: rgb(0, 0, 0);
+}
+li{
+    
+    font-size: 35px;
+    color: rgb(0, 0, 0);
+}
+.btn {
+    margin-top: 10px;
+    font-size: 40px;
+    
+}
+.contain{
+    height: 100vh;
+    background-color: rgb(102, 22, 78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family:Mali;
+}
+@font-face {
+    font-family: 'Mali';
+    src: url('../assets/Mali-BoldItalic.ttf');
+  }
