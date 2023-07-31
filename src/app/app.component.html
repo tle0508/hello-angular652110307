@@ -1,19 +1,25 @@
-<div style="border: 2px solid red; height: 100vh; 
+<div style="border: 5px solid rgb(140, 31, 31); height: 100vh; 
             display: flex; justify-content: center; align-items: center; 
-            flex-direction: column; font-family: sriracha; font-size: 30px">
-
+            flex-direction: column; font-size: 30px">
+  <img [src]="imgSrc" style="width: 100px;">
   <div style="display: flex; flex-direction: row; 
               justify-content: space-around;">
     <ul style="font-size: 14px;">
-      <li *ngFor="let captionItem of captionList">{{captionItem.message}}</li>
+      <li *ngFor="let captionItem of captionList">
+        <img [src]="captionItem.icon" style="width: 20px;">
+        {{captionItem.message}}
+      </li>
     </ul>
     <ul style="font-size: 14px;">
-      <li *ngFor="let captionItem of usedCaptionList">{{captionItem.message}}</li>
+      <li *ngFor="let captionItem of usedCaptionList">
+        <img [src]="captionItem.icon" style="width: 20px;">
+        {{captionItem.message}}
+      </li>
     </ul>
   </div>
 
   <div *ngIf="title">Caption: {{title}}</div>
-  <img [src]="imgSrc" style="width: 100px;">
+
   <button [disabled]="!title" class="btn btn-success" (click)="handleClickButton()">
     Next Caption
   </button>
