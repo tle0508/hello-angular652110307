@@ -10,13 +10,6 @@ export class AppComponent {
   title: String | undefined; 
   imgSrc = "./assets/Daco.png";
 
-  // type inference
-  // messages = [
-  //   'อากาศร้อนก็ทนเอา ขนาดเขาไม่รัก ยังทนได้เลย',
-  //   'ไม่ชอบคนอ่อนไหว ชอบแต่คนโอนไวเท่านั้น',
-  //   'เพราะว่าไม่ใช่ยาสระผม เลยไม่มีสิทธิ์เข้าตาเธอ',
-  // ];
-  //usedMessages: string[] = [];
 
   captionList: CaptionItem[] = [
     {
@@ -45,6 +38,7 @@ export class AppComponent {
   randomCaption() {
     let randomIndex: number;
     let newCaption: CaptionItem;
+    console.log('random');
 
     if (this.captionList.length == this.usedCaptionList.length) {
       return null;
@@ -57,6 +51,8 @@ export class AppComponent {
 
     this.usedCaptionList.push(newCaption);
     return newCaption;
+    
+    
   }
 
   handleClickButton() {
@@ -65,5 +61,11 @@ export class AppComponent {
 
   private getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
+  }
+
+  resetClick(){
+    console.log('reset');
+    this.usedCaptionList = [];
+    this.title = this.randomCaption()?.message;
   }
 }

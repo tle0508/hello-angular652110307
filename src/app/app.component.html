@@ -19,7 +19,9 @@
   </div>
 
   <div *ngIf="title">Caption: {{title}}</div>
-
+ <button [disabled]="title" class="btn btn-warning" (click)="resetClick()">
+    RESET
+  </button>
   <button [disabled]="!title" class="btn btn-success" (click)="handleClickButton()">
     Next Caption
   </button>
